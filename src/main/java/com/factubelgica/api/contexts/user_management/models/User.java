@@ -1,4 +1,4 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.models;
 
 import lombok.Getter;
 import lombok.NonNull;

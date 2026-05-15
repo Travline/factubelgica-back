@@ -1,4 +1,6 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.persistance;
+
+import com.factubelgica.api.contexts.user_management.models.User;
 
 import java.util.Optional;
 

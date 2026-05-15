@@ -16,7 +16,6 @@ public class JwtService {
   private final long expirationTime = 30 * 60 * 1000; // 30 min
 
   public JwtService(Dotenv dotenv) {
-    // Fallback a variable de sistema si no está en .env
     String secret = dotenv.get("JWT_SECRET_KEY", System.getenv("JWT_SECRET_KEY"));
     this.key = Keys.hmacShaKeyFor(secret.getBytes());
   }

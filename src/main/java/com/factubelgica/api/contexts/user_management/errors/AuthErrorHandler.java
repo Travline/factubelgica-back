@@ -1,4 +1,4 @@
-package com.factubelgica.api.contexts.auth.errors;
+package com.factubelgica.api.contexts.user_management.errors;
 
 import com.factubelgica.api.shared.errors.ErrorRespone;
 import org.springframework.core.Ordered;

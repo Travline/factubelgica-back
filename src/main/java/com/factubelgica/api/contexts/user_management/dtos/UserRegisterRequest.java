@@ -1,5 +1,6 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.dtos;
 
+import com.factubelgica.api.contexts.user_management.models.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

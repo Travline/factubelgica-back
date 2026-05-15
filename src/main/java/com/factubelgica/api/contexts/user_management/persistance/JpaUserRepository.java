@@ -1,4 +1,4 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.persistance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

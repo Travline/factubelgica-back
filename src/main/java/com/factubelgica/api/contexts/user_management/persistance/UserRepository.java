@@ -1,5 +1,6 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.persistance;
 
+import com.factubelgica.api.contexts.user_management.models.User;
 import com.factubelgica.api.shared.utils.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

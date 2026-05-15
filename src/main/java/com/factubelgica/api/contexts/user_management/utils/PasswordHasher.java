@@ -1,9 +1,9 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class PasswordHasher {
   private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

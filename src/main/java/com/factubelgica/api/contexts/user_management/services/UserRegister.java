@@ -1,7 +1,11 @@
-package com.factubelgica.api.contexts.auth;
+package com.factubelgica.api.contexts.user_management.services;
 
-import com.factubelgica.api.contexts.auth.errors.ErrorCreatingUser;
-import com.factubelgica.api.contexts.auth.errors.UserAlreadyExists;
+import com.factubelgica.api.contexts.user_management.dtos.UserRegisterRequest;
+import com.factubelgica.api.contexts.user_management.errors.ErrorCreatingUser;
+import com.factubelgica.api.contexts.user_management.errors.UserAlreadyExists;
+import com.factubelgica.api.contexts.user_management.models.User;
+import com.factubelgica.api.contexts.user_management.persistance.IUserRepository;
+import com.factubelgica.api.contexts.user_management.utils.PasswordHasher;
 import com.factubelgica.api.shared.core.UUIDv7;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
