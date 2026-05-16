@@ -32,9 +32,9 @@ public record UserRegisterRequest(
 
     private User.Roles parseRole(String roleName) {
       try {
-        return User.Roles.valueOf(roleName);
+        return User.Roles.valueOf(roleName.toUpperCase());
       } catch (IllegalArgumentException e) {
-        return User.Roles.user;
+        return User.Roles.USER;
       }
     }
 }
