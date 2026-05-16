@@ -22,7 +22,7 @@ public class User {
   private final Roles role;
 
   public enum Roles {
-    user,
-    admin
+    USER,
+    ADMIN
   }
 }
