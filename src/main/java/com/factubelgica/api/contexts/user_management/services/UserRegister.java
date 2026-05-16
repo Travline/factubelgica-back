@@ -22,7 +22,9 @@ public class UserRegister {
   public User execute(UserRegisterRequest req) {
     repository
         .findByEmail(req.email())
-        .orElseThrow(() -> new UserAlreadyExists("Email " + req.email() + "is already used"));
+        .ifPresent(user -> {
+          throw new UserAlreadyExists("Email " + req.email() + " is already used");
+        });
 
     UUID userId = v7.generate();
     String hashedPassword = hasher.hash(req.password());
