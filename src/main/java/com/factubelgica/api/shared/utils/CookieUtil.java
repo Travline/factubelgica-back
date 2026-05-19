@@ -8,7 +8,7 @@ public class CookieUtil {
   public ResponseCookie createTokenCookie(String token) {
     return ResponseCookie.from("factubelgica-token", token)
         .path("/")
-        .maxAge(30 * 60)
+        .maxAge(2 * 60 * 60)
         .httpOnly(true)
         .secure(true)
         .sameSite("None")

@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class JwtService {
   private final SecretKey key;
-  private final long expirationTime = 30 * 60 * 1000; // 30 min
+  private final long expirationTime = 2 * 60 * 60 * 1000;
 
   public JwtService(Dotenv dotenv) {
     String secret = dotenv.get("JWT_SECRET_KEY", System.getenv("JWT_SECRET_KEY"));

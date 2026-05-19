@@ -17,11 +17,4 @@ public class AuthErrorHandler {
         .status(HttpStatus.CONFLICT)
         .body(new ErrorRespone("USER_ALREADY_EXISTS", uae.getMessage()));
   }
-
-  @ExceptionHandler(ErrorCreatingUser.class)
-  public ResponseEntity<ErrorRespone> handleCreatingUser(ErrorCreatingUser ecu) {
-    return ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(new ErrorRespone("USER_CANNOT_BE_CREATED", ecu.getMessage()));
-  }
 }

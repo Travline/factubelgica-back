@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("auth")
 @RequiredArgsConstructor
-public class LoginController {
+public class AuthController {
   private final UserLogin login;
   private final CookieUtil cookieUtil;
   private final JwtService jwtService;
 
   @PostMapping("login")
-  public ResponseEntity<?> login(@RequestBody @Valid UserLoginRequest req) {
+  public ResponseEntity<UserLoginResponse> login(@RequestBody @Valid UserLoginRequest req) {
     User user = login.execute(req);
 
     return ResponseEntity

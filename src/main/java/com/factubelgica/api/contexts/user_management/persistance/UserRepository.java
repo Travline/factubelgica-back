@@ -5,7 +5,9 @@ import com.factubelgica.api.shared.utils.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -34,6 +36,22 @@ public class UserRepository implements IUserRepository {
     }
     catch (Exception e) {
       Slf4j.logger.warn("Error saving user", e);
+      return Optional.empty();
+    }
+  }
+
+  @Override
+  public Optional<List<User>> getUsersPublicInfo(UUID lastID, int limit) {
+    try {
+      return Optional.of(
+          jpaUserRepository
+          .findUsersPaginated(lastID, limit)
+          .stream()
+          .map(UserSchema::toUser)
+          .toList()
+      );
+    } catch (Exception e) {
+      Slf4j.logger.warn("Error searching users from lastId: {} with limit of {}", lastID, limit);
       return Optional.empty();
     }
   }
