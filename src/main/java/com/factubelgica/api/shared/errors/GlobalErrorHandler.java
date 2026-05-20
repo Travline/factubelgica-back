@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class GlobalErrorHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ErrorRespone> handleValidationArgs(MethodArgumentNotValidException manve) {
+  public ResponseEntity<ErrorResponse> handleValidationArgs(MethodArgumentNotValidException manve) {
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorRespone("INVALID_VALUES", manve.getMessage()));
+        .body(new ErrorResponse("INVALID_VALUES", manve.getMessage()));
   }
 
   @ExceptionHandler(UserUnauthorizedException.class)
-  public ResponseEntity<ErrorRespone> handleTokenValidation(UserUnauthorizedException uue) {
+  public ResponseEntity<ErrorResponse> handleTokenValidation(UserUnauthorizedException uue) {
     return ResponseEntity
         .status(HttpStatus.UNAUTHORIZED)
-        .body(new ErrorRespone("USER_UNAUTHORIZED", uue.getMessage()));
+        .body(new ErrorResponse("USER_UNAUTHORIZED", uue.getMessage()));
   }
 }

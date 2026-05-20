@@ -61,13 +61,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       }
 
       if (token == null) {
-        throw new UserUnauthorizedException("No se encontró la cookie de sesión");
+        throw new UserUnauthorizedException("Session cookies not found");
       }
 
       UUID userId = jwtService.validateTokenAndGetSubject(token);
 
       String role = jwtRepository.findUserRoleById(userId)
-          .orElseThrow(() -> new UserUnauthorizedException("Usuario no autorizado o inexistente"));
+          .orElseThrow(() -> new UserUnauthorizedException("User unauthorized"));
 
       UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
           userId,

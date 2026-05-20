@@ -4,7 +4,7 @@ CREATE TABLE users (
     username TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     pwd TEXT NOT NULL,
-    active BOOLEAN DEFAULT true,
+    active BOOLEAN DEFAULT true,}
     role TEXT NOT NULL CHECK (role IN ('user', 'admin')) DEFAULT 'user',
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

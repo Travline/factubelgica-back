@@ -13,13 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("admin")
+@RequestMapping("a-role")
 @RequiredArgsConstructor
 public class UsersController {
   private final UserRegister register;
@@ -28,11 +29,20 @@ public class UsersController {
   private final JwtService jwtService;
 
   @PostMapping("users")
-  public ResponseEntity<UserRegisterResponse> register(@RequestBody @Valid UserRegisterRequest req) {
+  public ResponseEntity<UserRegisterResponse> register(
+      @RequestBody @Valid UserRegisterRequest req,
+      @AuthenticationPrincipal UUID authUserId
+  ) {
     User user = register.execute(req);
 
     return ResponseEntity
         .status(HttpStatus.CREATED)
+        .header(
+            HttpHeaders.SET_COOKIE,
+            cookieUtil
+                .createTokenCookie(jwtService.generateToken(authUserId))
+                .toString()
+        )
         .body(UserRegisterResponse.fromUser(user));
   }
 
@@ -45,7 +55,8 @@ public class UsersController {
   @GetMapping("users")
   public ResponseEntity<?> listUserPage(
       @RequestParam(defaultValue = "01942000-0000-71a3-a5bc-b271f284e93d") UUID lastId,
-      @RequestParam(defaultValue = "10") int limit
+      @RequestParam(defaultValue = "10") int limit,
+      @AuthenticationPrincipal UUID authUserId
   ) {
     List<UserItemResponse> userslist = listUsers
         .execute(lastId, limit)
@@ -55,6 +66,12 @@ public class UsersController {
 
     return ResponseEntity
         .status(200)
+        .header(
+            HttpHeaders.SET_COOKIE,
+            cookieUtil
+                .createTokenCookie(jwtService.generateToken(authUserId))
+                .toString()
+        )
         .body(userslist);
   }
 }

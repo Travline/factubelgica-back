@@ -1,6 +1,6 @@
 package com.factubelgica.api.contexts.user_management.errors;
 
-import com.factubelgica.api.shared.errors.ErrorRespone;
+import com.factubelgica.api.shared.errors.ErrorResponse;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class AuthErrorHandler {
   @ExceptionHandler(UserAlreadyExists.class)
-  public ResponseEntity<ErrorRespone> handleUserExists(UserAlreadyExists uae) {
+  public ResponseEntity<ErrorResponse> handleUserExists(UserAlreadyExists uae) {
     return ResponseEntity
         .status(HttpStatus.CONFLICT)
-        .body(new ErrorRespone("USER_ALREADY_EXISTS", uae.getMessage()));
+        .body(new ErrorResponse("USER_ALREADY_EXISTS", uae.getMessage()));
   }
 }
