@@ -53,7 +53,7 @@ public class UsersController {
   * o lo q seria el usuario 1 en adelante
   */
   @GetMapping("users")
-  public ResponseEntity<?> listUserPage(
+  public ResponseEntity<List<UserItemResponse>> listUserPage(
       @RequestParam(defaultValue = "01942000-0000-71a3-a5bc-b271f284e93d") UUID lastId,
       @RequestParam(defaultValue = "10") int limit,
       @AuthenticationPrincipal UUID authUserId

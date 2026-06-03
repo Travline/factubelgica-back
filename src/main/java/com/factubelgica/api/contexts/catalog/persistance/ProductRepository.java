@@ -26,6 +26,17 @@ public class ProductRepository implements IProductRepository {
   }
 
   @Override
+  public Optional<Product> findById(Integer productId) {
+    try {
+      return jpaProductRepository.findById(productId)
+          .map(ProductSchema::toProduct);
+    } catch (Exception e) {
+      Slf4j.logger.warn("Error finding product by ID: {}", productId, e);
+      return Optional.empty();
+    }
+  }
+
+  @Override
   public Optional<List<Product>> getProductsPaginated(Integer lastId, int limit) {
     try {
       return Optional.of(
