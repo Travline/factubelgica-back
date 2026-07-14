@@ -1,8 +1,8 @@
 package com.factubelgica.api.contexts.dashboard.services;
 
-import com.factubelgica.api.contexts.dashboard.errors.DashboardFetchException;
+import com.factubelgica.api.contexts.dashboard.errors.*;
 import com.factubelgica.api.contexts.dashboard.models.*;
-import com.factubelgica.api.contexts.dashboard.persistance.IDashboardRepository;
+import com.factubelgica.api.contexts.dashboard.persistance.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,7 @@ public class TaxReportGet {
     for (RawInvoiceItem item : items) {
       int m = item.getIssueDate().getMonthValue();
       BigDecimal itemNetVal = item.getItemNetPrice().multiply(item.getQuantity());
-      BigDecimal itemTaxVal = itemNetVal.multiply(item.getVatRate());
+      BigDecimal itemTaxVal = itemNetVal.multiply(item.getVatRate().divide(BigDecimal.valueOf(100)));
 
       taxesByMonth[m - 1] = taxesByMonth[m - 1].add(itemTaxVal);
 
