@@ -25,7 +25,7 @@ public interface JpaDashboardRepository extends JpaRepository<InvoiceSchema, UUI
       JOIN invoices i ON ii.invoice_id = i.invoice_id
       JOIN products p ON ii.product_id = p.product_id
       WHERE EXTRACT(YEAR FROM i.issue_date) = :year
-        AND i.status <> 'Anulado'
+        AND i.status IN ('Pagado', 'Enviado')
       """, nativeQuery = true)
   List<Object[]> findRawInvoiceItemsByYear(@Param("year") int year);
 
