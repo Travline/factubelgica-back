@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -38,7 +39,8 @@ public class TaxReportGet {
     for (RawInvoiceItem item : items) {
       int m = item.getIssueDate().getMonthValue();
       BigDecimal itemNetVal = item.getItemNetPrice().multiply(item.getQuantity());
-      BigDecimal itemTaxVal = itemNetVal.multiply(item.getVatRate().divide(BigDecimal.valueOf(100)));
+      BigDecimal taxMultiplier = item.getVatRate().divide(BigDecimal.valueOf(100));
+      BigDecimal itemTaxVal = itemNetVal.multiply(taxMultiplier);
 
       taxesByMonth[m - 1] = taxesByMonth[m - 1].add(itemTaxVal);
 
